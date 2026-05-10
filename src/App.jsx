@@ -5,23 +5,20 @@ import Vine from './components/Vine'
 import VineBranch from './components/VineBranch'
 
 function App() {
-  const containerRef = useRef(null)
-  const [containerHeight, setContainerHeight] = useState(0)
+  const pageRef = useRef(null)
+  const [pageHeight, setPageHeight] = useState(0)
 
   useEffect(() => {
-    if (containerRef.current) {
-      setContainerHeight(containerRef.current.scrollHeight)
+    if (pageRef.current) {
+      setPageHeight(pageRef.current.scrollHeight)
     }
   }, [])
 
   return (
-    <div className="min-h-screen bg-black">
+    <div ref={pageRef} className="min-h-screen bg-black relative">
+      <Vine totalHeight={pageHeight} />
       <Hero />
-      <div
-        ref={containerRef}
-        className="relative flex flex-col gap-32 pb-20 pl-8"
-      >
-        <Vine totalHeight={containerHeight} />
+      <div className="flex flex-col gap-32 pb-20 pl-8">
         {projects.map((project) => (
           <VineBranch key={project.id} project={project} />
         ))}
