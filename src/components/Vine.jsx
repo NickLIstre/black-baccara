@@ -46,7 +46,7 @@ function Vine({ totalHeight }) {
             <ellipse
               key={i}
               cx={20 + direction * 16}
-              cy={y}
+              cy={y + 10}
               rx="10"
               ry="6"
               fill="#2d5a1b"

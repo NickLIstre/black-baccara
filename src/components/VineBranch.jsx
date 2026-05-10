@@ -8,18 +8,16 @@ function VineBranch({ project }) {
   const [branchDone, setBranchDone] = useState(false)
 
   useEffect(() => {
-    // Create the Intersection Observer
     const observer = new IntersectionObserver(
       (entries) => {
         // entries is an array of observed elements
         // we only have one so we check entries[0]
         if (entries[0].isIntersecting) {
           setIsVisible(true)
-          // Once visible we stop watching — no need to re-trigger
           observer.disconnect()
         }
       },
-      // threshold: 0.3 means 30% of the element must be visible to trigger
+      // 30% of the element must be visible to trigger
       { threshold: 0.3 }
     )
 
@@ -27,12 +25,11 @@ function VineBranch({ project }) {
       observer.observe(ref.current)
     }
 
-    // Cleanup — stop observing if component unmounts
     return () => observer.disconnect()
   }, [])
 
   return (
-    <div ref={ref} className="flex items-center">
+    <div ref={ref} className="flex items-center" style={{ marginLeft: '20px' }}>
 
       {/* The horizontal branch line */}
       <motion.div
