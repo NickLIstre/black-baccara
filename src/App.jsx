@@ -1,15 +1,29 @@
+import { useRef, useEffect, useState } from 'react'
 import { projects } from './data/projects'
-import ProjectCard from './components/ProjectCard'
+import Hero from './components/Hero'
+import Vine from './components/Vine'
+import VineBranch from './components/VineBranch'
 
 function App() {
+  const containerRef = useRef(null)
+  const [containerHeight, setContainerHeight] = useState(0)
+
+  useEffect(() => {
+    if (containerRef.current) {
+      setContainerHeight(containerRef.current.scrollHeight)
+    }
+  }, [])
+
   return (
-    <div className="min-h-screen bg-black p-10">
-      <h1 className="text-white text-4xl text-center mb-10">
-        Black Baccara Productions
-      </h1>
-      <div className="flex flex-col items-center gap-8">
+    <div className="min-h-screen bg-black">
+      <Hero />
+      <div
+        ref={containerRef}
+        className="relative flex flex-col gap-32 pb-20 pl-8"
+      >
+        <Vine totalHeight={containerHeight} />
         {projects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+          <VineBranch key={project.id} project={project} />
         ))}
       </div>
     </div>

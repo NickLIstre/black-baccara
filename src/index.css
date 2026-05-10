@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+* {
+  font-family: 'Raleway', sans-serif;
+}
+
+h1 {
+  font-family: 'Megrim', cursive;
+}
